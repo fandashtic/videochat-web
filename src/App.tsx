@@ -59,7 +59,7 @@ const useStyles = makeStyles(theme => ({
 const defaultState = {
   appId: "",
   channel: "",
-  uid: "",
+  uid: 0,
   token: "",
   cameraId: "",
   microphoneId: "",
@@ -139,7 +139,7 @@ function App() {
         
     axios.get('getUser?root=employeeList').then(result => {
       const _employeeList = result.data;
-      //console.log(JSON.stringify(_employeeList));
+      console.log(JSON.stringify(_employeeList));
     });
 
   },[isValidUser]);  
@@ -154,7 +154,7 @@ function App() {
     if (email !== undefined && email !== "") {
       var user = employeeList.filter(function (o) { return o.email === email; });
       if (user !== null && user !== undefined && user.length > 0) {
-        console.log(user);
+        //console.log(user);
         setIsValidUser(true);
       } else {
         enqueueSnackbar(`User not found!`, { variant: "error" });
@@ -185,31 +185,31 @@ function App() {
   };
 
   const joinClient = async () => {
-    console.log(state.appId);
+    //console.log(state.appId);
     const client = AgoraRTC.createClient({ mode: state.mode, codec: state.codec })
     setClient(client)
     setIsLoading(true);
     try {
         const uid = isNaN(Number(state.uid)) ? null : Number(state.uid);
         await client.init(state.appId);
-        await client.setClientRole("host", function (e) {
-          if (!e) {
-            console.log("setHost success");
-          } else {
-            console.log("setHost error", e);
-          }
-        });
+        // await client.setClientRole("host", function (e) {
+        //   if (!e) {
+        //     console.log("setHost success");
+        //   } else {
+        //     console.log("setHost error", e);
+        //   }
+        // });
         await client.join(state.token, state.channel, uid);
         //console.log(state.token);
-        client.renewToken(state.appId);
+        //client.renewToken(state.appId);
         //console.log(state.token);
-      const stream = AgoraRTC.createStream({
-        streamID: uid || 12345,
-        video: true,
-        audio: true,
-        screen: false
-      });
-        // stream.setVideoProfile('480p_4')
+        const stream = AgoraRTC.createStream({
+          streamID: uid || 123456,
+          video: true,
+          audio: true,
+          screen: false
+        });
+
         await stream.init();
         await client.publish(stream);
         setIsPublished(true);

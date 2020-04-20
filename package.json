@@ -1,5 +1,5 @@
 {
-  "name": "agora-web-tutorial-1to1-react",
+  "name": "videochat",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -18,7 +18,7 @@
     "notistack": "^0.8.6",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-scripts": "3.0.1",
+    "react-scripts": "^3.4.1",
     "typescript": "3.5.1"
   },
   "scripts": {
