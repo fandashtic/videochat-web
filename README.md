@@ -1,6 +1,4 @@
-# Web Tutorial For React & TS - 1to1
-
-*English | [中文](README.zh.md)*
+# Web Video Chat For React & TS - 1to1
 
 This tutorial shows you how to quickly create an basic video communication using the Agora sample app.
 
