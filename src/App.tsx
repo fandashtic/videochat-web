@@ -1,4 +1,4 @@
-import React, { useReducer, useState } from "react";
+import React, { useReducer, useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
@@ -25,11 +25,13 @@ import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
 import StreamPlayer from "agora-stream-player";
 import { SnackbarProvider, useSnackbar } from "notistack";
-
+import axios from './Api';
 import { useCamera, useMicrophone, useMediaStream } from "./hooks";
 import AgoraRTC from "./utils/AgoraEnhancer";
 import employeeList from './employeeList';
 import logo from './images/logo.png';
+
+const proxy = require("http-proxy-middleware");
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -55,10 +57,10 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const defaultState = {
-  appId: "59b34d8c4412496eb958bcab437d77e6",
+  appId: "",
   channel: "",
   uid: "",
-  token: "00659b34d8c4412496eb958bcab437d77e6IAANbnUEmC4UYjG3qhsTDhpmFhAer3eIqwVxrJCqhfhxZQx+f9gAAAAAEADOL/3owaCaXgEAAQDBoJpe",
+  token: "",
   cameraId: "",
   microphoneId: "",
   mode: "rtc",
@@ -132,6 +134,22 @@ function App() {
   let [localStream, remoteStreamList, streamList] = useMediaStream(agoraClient);
   const { enqueueSnackbar } = useSnackbar();
 
+  useEffect(() => {
+    document.title = `BuSoft Virtual Meeting Spot`;
+        
+    axios.get('getUser?root=employeeList').then(result => {
+      const _employeeList = result.data;
+      //console.log(JSON.stringify(_employeeList));
+    });
+
+  },[isValidUser]);  
+
+  useEffect(() => {
+    if (state.appId !== "") {
+      joinClient();
+    }
+  }, [state.token]);
+
   function login() {
     if (email !== undefined && email !== "") {
       var user = employeeList.filter(function (o) { return o.email === email; });
@@ -147,6 +165,7 @@ function App() {
       setIsValidUser(false);
     }
   }
+
   const update = (actionType: string) => (e: React.ChangeEvent<unknown>) => {
     return dispatch({
       type: actionType,
@@ -155,35 +174,47 @@ function App() {
   };
 
   const join = async () => {
+    axios.get('generateRtcToken?channelName=' + state.channel).then(result => {
+      const agora_io = result.data;
+      if (agora_io !== null && agora_io !== undefined) {
+        dispatch({type: "setAppId", value: agora_io.appId});
+        dispatch({type: "setToken", value: agora_io.token});
+      }
+      //console.log(JSON.stringify(agora_io));      
+    });
+  };
+
+  const joinClient = async () => {
+    console.log(state.appId);
     const client = AgoraRTC.createClient({ mode: state.mode, codec: state.codec })
     setClient(client)
     setIsLoading(true);
     try {
-      const uid = isNaN(Number(state.uid)) ? null : Number(state.uid);
-      await client.init(state.appId);
-      await client.setClientRole("host", function(e) {
-        if (!e) {
-          console.log("setHost success");
-        } else {
-          console.log("setHost error", e);
-        }
-      });     
-      await client.join(state.token, state.channel, uid);
-      //console.log(state.token);
-      client.renewToken(state.appId);
-      //console.log(state.token);
+        const uid = isNaN(Number(state.uid)) ? null : Number(state.uid);
+        await client.init(state.appId);
+        await client.setClientRole("host", function (e) {
+          if (!e) {
+            console.log("setHost success");
+          } else {
+            console.log("setHost error", e);
+          }
+        });
+        await client.join(state.token, state.channel, uid);
+        //console.log(state.token);
+        client.renewToken(state.appId);
+        //console.log(state.token);
       const stream = AgoraRTC.createStream({
         streamID: uid || 12345,
         video: true,
         audio: true,
         screen: false
       });
-      // stream.setVideoProfile('480p_4')
-      await stream.init();
-      await client.publish(stream);
-      setIsPublished(true);
-      setisJoined(true);
-      enqueueSnackbar(`Joined channel ${state.channel}`, { variant: "info" });
+        // stream.setVideoProfile('480p_4')
+        await stream.init();
+        await client.publish(stream);
+        setIsPublished(true);
+        setisJoined(true);
+        enqueueSnackbar(`Joined channel ${state.channel}`, { variant: "info" });
     } catch (err) {
       enqueueSnackbar(`Failed to join, ${err}`, { variant: "error" });
     } finally {

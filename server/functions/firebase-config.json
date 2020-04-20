@@ -1,0 +1,19 @@
+{
+  "tocken": {
+    "type": "service_account",
+    "project_id": "videocall-3e257",
+    "private_key_id": "42b59cf2c83abf4055a9a1954534edfcb33ffd4d",
+    "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCfJoRD0yUS6Ggx\nEipuHcwx8as8og7fjTxalcbpCcPiAfH7ZpFS0SvlC4bkRlMVHBlhXQ1JDsuQC5vQ\nZVMDgbt0WqhxZr9Go2sFczNV7ZXVpnWiZu9VqYJizvghl1qCyRiLQ9T3vmNrIJ6g\nnllJ6G01nXnvQwb4Z4DN31nF/mktuuJ3piC4H34KVuFVmOpHaOd62j1tl3BAwBph\njENME0aYKjl5TfVBCgcn84EreU7AiUxY7ERcgWdcr+jG9WbNCQsTfZhyvBXQDZG2\nfGCsL8IzFik3Rk3F8XRKijbxS5ODbQTQvtt6QOYEjackn9liMrOGerMX91yDzsI/\nteN5j8pNAgMBAAECggEALWZ38b9AgrnQyzrS5tHSR+cYgbX7RzOLpY23jhAOlKEY\nbi6uwzDPdEoLA4C6P7nh1aANY6t4T5G4M8VL3qK6HnGkPqFgbF6+73GTEe6yQR34\nzcjOeqHeA6DmMPLzy35hZY0GqlviEZPfHJO/hfFrghF30NTOnrssB86w1eYDDBuh\nq0vvQAxyISK3x9tWHWVyacqIk2sadEhGucirTnIUnNlxoHSCAFTpSklsvMaa/92m\nlyp0Uqxhq7J5ZrXp4ARFUDRYcfIB1yqEvXUalFXPl5y4ZUAyIzvk3CEUayosPs9D\n1+fb3oMPV3+C0TBne12nlA5DczpI/rk6Rig9aTdPkwKBgQDfzFFl+zDSGb66pZSs\nLqK2Cmgd9fPX2KZCPrdm5KOG/vcrunSWXKULcVgnx2fv+KQzf74qzB9xMIaJIiUP\nQzWk1alMLBurch30EnYkKmB0S09udnvCCUsb818/pxd9Sizu//+SnMd1SYd/mzV8\ngN/9toASJGjBfa20SuPeopMWfwKBgQC2DOEjYZUtfw2OpRL7zhyNLhNuC8oaKFJw\nGgV6KTysF/E7KsGJ0oTvPHRLyLUrq+50+K/3OEj7ChIRCSxhEdu042zPXran9M8T\nSR4mohRDkW/RrsGOzh1tF5Wnxv6dyTFCozb6uh6i5sMNw3iptyq6HbQTI3kTsA7Q\ntyHznwwxMwKBgCP5rTAOlAeCGfXY/jA7gu5ud9QxIFSXQAqwGD1TDbJ6s/L0kx9E\nn0danggu9tdNid+5bjFlBLzmRwouUfTFIg9wRTm4cW469vOwMAuaQE0ReiBQrY5A\nfjFtCuepjY4XaWe2AThpOWryOfTaV1u/P8KCHs5Lygcok87CpyS3z5szAoGBAJOu\n3RDjv63ZzPiz5zOIn9bT0wVJ4RjZLw8rvNe+Di8ZeSNjav/QXPDqnPlBh982qcoQ\nWEd4TJQCNmfFhk/0ucQDXqjXD9wul7HwddonT8MEf66dUv3zLSHrqQcjQjhkF2cU\nmqxJQkMqan+G3CLpqWq0X/nKpBUZlNsyRQOqOazLAoGBAMS+LCeOqHrGeOKmtjjA\nLLgFpKE8/dbCoWxNZXJg93eSEV/d3xs3fm50dcBKfjRxlA5ctqBf9vQdTFuWJBD4\nVr66Bn4pq5xSiWRqJ0ulse2hCuCj5lEDg10y7uvqljZqmlNLK+ufEm89YJb7RdG4\nurs77KKt9combKCqNpUc7/9W\n-----END PRIVATE KEY-----\n",
+    "client_email": "firebase-adminsdk-8u74n@videocall-3e257.iam.gserviceaccount.com",
+    "client_id": "114557346221256529777",
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://oauth2.googleapis.com/token",
+    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+    "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-8u74n%40videocall-3e257.iam.gserviceaccount.com"
+  },
+  "databaseURL": "https://videocall-3e257.firebaseio.com",
+  "agora_io": {
+    "appID": "59b34d8c4412496eb958bcab437d77e6",
+    "appCertificate": "bde376ac0e0748409a70928200c0137d"
+  }
+}

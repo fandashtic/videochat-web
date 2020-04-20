@@ -13,6 +13,8 @@
     "agora-rtc-sdk": "^2.9.0",
     "agora-stream-player": "^1.1.3",
     "agoran-awe": "1.1.2",
+    "axios": "^0.19.2",
+    "cors": "^2.8.5",
     "notistack": "^0.8.6",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
@@ -40,5 +42,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "proxy": "http://localhost:3000"
 }
